@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kubertas
+  labels:
+    app: kubertas
+spec:
+  selector:
+    matchLabels:
+      app: kubertas
+  template:
+    metadata:
+      labels:
+        app: kubertas
+    spec:
+      containers:
+        - name: kubertas
+          image: quay.io/kviswana/kube-rtas:0.1
+          env:
+            - name: VERBOSITY
+              value: "0"
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          command: ["/usr/bin/kubertas"]
+          args: [--config, /etc/config/config.json, --v, $(VERBOSITY)]
+          volumeMounts:
+            - name: servicelog-db
+              mountPath: /servicelog.db
+              readOnly: true
+            - name: kubertas-config
+              mountPath: /etc/config
+      tolerations:
+      - operator: "Exists"
+      volumes:
+        - name: servicelog-db
+          hostPath:
+            path: /var/lib/servicelog/servicelog.db
+            type: File
+        - name: kubertas-config
+          configMap:
+            name: kubertas-configmap
+            items:
+              - key: config.json
+                path: config.json
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+status: {}

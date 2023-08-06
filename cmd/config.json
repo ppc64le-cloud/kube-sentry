@@ -1,0 +1,5 @@
+{
+    "PollInterval": 5,
+    "ServicelogDBPath": "/var/lib/servicelog/servicelog.db",
+    "Severity": 3
+}

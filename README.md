@@ -17,9 +17,7 @@ The KubeRTAS application can be configured to work in a standalone mode, or be d
 {
     "PollInterval": 5,
     "ServicelogDBPath": "servicelog.db",
-    "Severity": 3,
-    "InCluster": false,
-    "Verbosity": 1
+    "Severity": 3
 }
 ```
 
@@ -28,10 +26,6 @@ PollInterval(Hours) - Scan the servicelog.db in specified intervals of time.
 ServicelogDBPath - Path to the servicelog.db file on the node.
 
 Severity - Retrieve entries from the servicelog.db whose event severity is greater than or equal to the set value.
-
-InCluster - Run the KubeRTAS application either as an Deployment or a standalone application.
-
-Verbosity - 1 to enable debug level logs.
 
 ---
 
@@ -45,7 +39,7 @@ yum install sqlite-devel
 
 cd cmd
 go build -o kubertas .
-./kubertas -c <path to config file (optional)>
+./kubertas -c <path to config file (optional) -v <log verbosity>
 ```
 
 This creates a kubeRTAS process and uses the available Kubeconfig to notify the RTAS events to Kubernetes API server.
