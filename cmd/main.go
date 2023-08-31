@@ -11,9 +11,9 @@ import (
 	"github.com/spf13/pflag"
 	"k8s.io/klog/v2"
 
-	"kubertas/dbreader"
-	"kubertas/knode"
-	"kubertas/utils"
+	"github.com/ppc64le-cloud/kube-rtas/pkg/dbreader"
+	"github.com/ppc64le-cloud/kube-rtas/pkg/knode"
+	"github.com/ppc64le-cloud/kube-rtas/pkg/utils"
 )
 
 var (
@@ -45,8 +45,8 @@ func main() {
 	svLogReader := dbreader.NewReader(serviceConfig.ServicelogPath, serviceConfig.Severity)
 
 	// Set up notifier to post events to the Kube API server.
-	notifier := knode.NewK8sNotifier()
-	err = notifier.InitializeK8sNotifier()
+	notifier := knode.NewNotifier()
+	err = notifier.InitializeNotifier()
 	if err != nil {
 		klog.Fatalf("cannot initialize the k8s apiserver notifier. %v", err)
 	}
@@ -67,8 +67,8 @@ func main() {
 			case <-ticker.C:
 			case <-initRun:
 			}
-			if err = svLogReader.ReadServicelogDB(notifier); err != nil {
-				klog.Errorf("error while reading the logs from the servicelog.db file. %v", err)
+			if err = svLogReader.ParseServiceLogDB(notifier); err != nil {
+				klog.Fatalf("error while processing servicelogs. %v", err)
 				return
 			}
 		}
