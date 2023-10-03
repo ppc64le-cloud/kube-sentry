@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubertas-configmap
+data:
+  config.json: |
+    {
+        "PollInterval": 5,
+        "ServiceLogDBPath": "/servicelog.db",
+        "Severity": 3
+    }
