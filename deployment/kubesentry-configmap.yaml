@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kubertas-configmap
+  name: kubesentry-configmap
 data:
   config.json: |
     {

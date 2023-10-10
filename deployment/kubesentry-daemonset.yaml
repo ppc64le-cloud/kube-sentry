@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: kubertas
+  name: kube-sentry
   labels:
-    app: kubertas
+    app: kube-sentry
 spec:
   selector:
     matchLabels:
-      app: kubertas
+      app: kube-sentry
   template:
     metadata:
       labels:
-        app: kubertas
+        app: kube-sentry
     spec:
       containers:
-        - name: kubertas
-          image: quay.io/kviswana/kube-rtas:0.1
+        - name: kube-sentry
+          image: quay.io/kviswana/kube-sentry:0.1
           env:
             - name: VERBOSITY
               value: "0"
@@ -23,13 +23,13 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-          command: ["/usr/bin/kubertas"]
+          command: ["/usr/bin/kube-sentry"]
           args: [--config, /etc/config/config.json, --v, $(VERBOSITY)]
           volumeMounts:
             - name: servicelog-db
               mountPath: /servicelog.db
               readOnly: true
-            - name: kubertas-config
+            - name: kube-sentry-config
               mountPath: /etc/config
       tolerations:
       - operator: "Exists"
@@ -38,9 +38,9 @@ spec:
           hostPath:
             path: /var/lib/servicelog/servicelog.db
             type: File
-        - name: kubertas-config
+        - name: kube-sentry-config
           configMap:
-            name: kubertas-configmap
+            name: kubesentry-configmap
             items:
               - key: config.json
                 path: config.json
