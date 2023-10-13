@@ -1,14 +1,15 @@
-# KubeRTAS - RTAS event notifier for Kubernetes on ppc64le.
+# Kube-sentry: Kubernetes - Servicelog Event Notifier Towards improved Reliability.
 
+kube-sentry reads the servicelog.db to parse the RTAS (Run Time Abstraction Services) events which have been reported by the RTAS daemon. The events are related to the platform, such as Predictive CPU Failure, IO Bus Failure, Fan Failures, etc. and are reported to the Kubernetes API server. 
 
-KubeRTAS reads the servicelog.db to read the RTAS (Run Time Abstraction Services) events which have been reported by the RTAS daemon. The events are related to the platform, such as Power Suppy or Fan Failures, etc. and are reported to the Kubernetes API server. 
+This gives the cluster administrators visiblity about the errors that may be prevalent in underlying host. The servicelogs are specific to the PowerPC family of servers by IBM Corporation. 
 
-The KubeRTAS application can be configured to work in a standalone mode, or be deployed as a DaemonSet in Kubernetes cluster. This gives additional visibility to the cluster administrators regarding the issues that may be prevelent in the underlying infrastructure.
+The kube-sentry application can be configured to work in a standalone mode, or be deployed as a DaemonSet in Kubernetes cluster.
 
 ---
 #### Architecture Diagram:
 
-![RTAS](https://github.com/kishen-v/kube-rtas/assets/110517346/bbbd9436-c87f-4757-a4f3-5c9c9c8a8835)
+![kube-sentry](https://github.com/kishen-v/kube-rtas/assets/110517346/5c7b6dce-c0e1-4468-b1be-35516e3c6e72)
 
 ---
 ### Configuration:
@@ -38,11 +39,11 @@ This mode requires the KUBECONFIG environment variable to be set.
 yum install sqlite-devel
 
 cd cmd
-go build -o kubertas .
-./kubertas -c <path to config file (optional) -v <log verbosity>
+go build -o kube-sentry .
+./kube-sentry -c <path to config file (optional) -v <log verbosity>
 ```
 
-This creates a kubeRTAS process and uses the available Kubeconfig to notify the RTAS events to Kubernetes API server.
+This creates a kube-sentry process and uses the available Kubeconfig to notify the RTAS events to Kubernetes API server.
 
 #### Daemonset deployment
 ` kubectl apply -f deployment `

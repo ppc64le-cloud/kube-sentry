@@ -3,11 +3,11 @@ RUN apk add sqlite-dev \
             sqlite-static \
             gcc \
             libc-dev
-WORKDIR /kubertas
+WORKDIR /kube-sentry
 COPY . .
-RUN CGO_ENABLED=1 go build -ldflags "-s -w -linkmode 'external' -extldflags '-static'" -v -o /kubertas/kubertas /kubertas/cmd
+RUN CGO_ENABLED=1 go build -ldflags "-s -w -linkmode 'external' -extldflags '-static'" -v -o /kube-sentry/kube-sentry /kube-sentry/cmd
 
 FROM scratch
-COPY --from=builder /kubertas/kubertas /usr/bin/kubertas
+COPY --from=builder /kube-sentry/kube-sentry /usr/bin/kube-sentry
 WORKDIR /
-CMD ["/usr/bin/kubertas"]
+CMD ["/usr/bin/kube-sentry"]

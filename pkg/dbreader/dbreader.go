@@ -10,7 +10,7 @@ import (
 	// SQLite driver.
 	_ "rsc.io/sqlite"
 
-	"github.com/ppc64le-cloud/kube-rtas/pkg/knode"
+	"github.com/ppc64le-cloud/kube-sentry/pkg/knode"
 )
 
 type DbReader interface {

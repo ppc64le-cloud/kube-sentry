@@ -29,7 +29,7 @@ type ServiceLogConf struct {
 	Severity int `json:"Severity"`
 }
 
-// Readconfig reads the data present in the config file to setup KubeRTAS.
+// Readconfig reads the data present in the config file to setup kube-sentry.
 func ReadConfig(configPath string) (*ServiceLogConf, error) {
 	var initCfg ServiceLogConf
 	file, err := os.ReadFile(configPath)

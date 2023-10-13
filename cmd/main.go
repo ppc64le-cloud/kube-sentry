@@ -11,9 +11,9 @@ import (
 	"github.com/spf13/pflag"
 	"k8s.io/klog/v2"
 
-	"github.com/ppc64le-cloud/kube-rtas/pkg/dbreader"
-	"github.com/ppc64le-cloud/kube-rtas/pkg/knode"
-	"github.com/ppc64le-cloud/kube-rtas/pkg/utils"
+	"github.com/ppc64le-cloud/kube-sentry/pkg/dbreader"
+	"github.com/ppc64le-cloud/kube-sentry/pkg/knode"
+	"github.com/ppc64le-cloud/kube-sentry/pkg/utils"
 )
 
 var (
@@ -27,10 +27,10 @@ func main() {
 	klogFlags.Set("logtostderr", "true")
 
 	pflag.CommandLine.AddGoFlagSet(klogFlags)
-	pflag.StringVarP(&cfgFilePath, "config", "c", "config.json", "Path to KubeRTAS config file")
+	pflag.StringVarP(&cfgFilePath, "config", "c", "config.json", "Path to kube-sentry config file")
 	pflag.Parse()
 
-	klog.Infof("setting up KubeRTAS, reading config from %s", cfgFilePath)
+	klog.Infof("setting up kube-sentry, reading config from %s", cfgFilePath)
 	serviceConfig, err := utils.ReadConfig(cfgFilePath)
 	if err != nil {
 		klog.Fatalf("error while reading config. Error: %v", err)
@@ -80,7 +80,7 @@ func main() {
 	go func() {
 		sig := <-sigchan
 		done <- struct{}{}
-		klog.Infof("Captured %s, Shutting down KubeRTAS", sig.String())
+		klog.Infof("Captured %s, Shutting down kube-sentry", sig.String())
 		wg.Done()
 		os.Exit(0)
 	}()
