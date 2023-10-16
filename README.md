@@ -9,7 +9,8 @@ The kube-sentry application can be configured to work in a standalone mode, or b
 ---
 #### Architecture Diagram:
 
-![kube-sentry](https://github.com/kishen-v/kube-rtas/assets/110517346/5c7b6dce-c0e1-4468-b1be-35516e3c6e72)
+![kube-sentry](https://github.com/ppc64le-cloud/kube-sentry/assets/110517346/4f010c90-664d-40f0-b694-15c3744dbefc)
+
 
 ---
 ### Configuration:
