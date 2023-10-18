@@ -37,8 +37,6 @@ Severity - Retrieve entries from the servicelog.db whose event severity is great
 This mode requires the KUBECONFIG environment variable to be set.
 
 ```
-yum install sqlite-devel
-
 cd cmd
 go build -o kube-sentry .
 ./kube-sentry -c <path to config file (optional) -v <log verbosity>
@@ -49,4 +47,14 @@ This creates a kube-sentry process and uses the available Kubeconfig to notify t
 #### Daemonset deployment
 ` kubectl apply -f deployment `
 
+The log verbosity can be set to report debug messages by modifying the ` deployment/kubesentry-deployment.yaml ` file.
+```
+    spec:
+      containers:
+        - name: kube-sentry
+          image: ghcr.io/ppc64le-cloud/kube-sentry:v0.1
+          env:
+            - name: VERBOSITY
+              value: <0 for Info, 1 for Debug>
+```
 This creates the required RBAC, config map and the daemonset to notify RTAS events to the Kubernetes API server.
