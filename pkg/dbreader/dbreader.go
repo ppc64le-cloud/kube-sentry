@@ -8,7 +8,7 @@ import (
 	"k8s.io/klog/v2"
 
 	// SQLite driver.
-	_ "rsc.io/sqlite"
+	_ "modernc.org/sqlite"
 
 	"github.com/ppc64le-cloud/kube-sentry/pkg/knode"
 )
@@ -66,7 +66,7 @@ func (parser *ServiceLogParser) ParseServiceLogDB(notifier *knode.Notifier) erro
 
 // openDatabase opens the servicelog.db file from the configured path.
 func (parser *ServiceLogParser) openDatabase() error {
-	db, err := sql.Open("sqlite3", parser.dbPath)
+	db, err := sql.Open("sqlite", parser.dbPath)
 	if err != nil {
 		return fmt.Errorf("error while opening DB: %v", err)
 	}
