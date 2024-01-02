@@ -9,7 +9,7 @@ require (
 	k8s.io/client-go v0.28.4
 	k8s.io/klog/v2 v2.110.1
 	k8s.io/kubernetes v1.15.0-alpha.0
-	modernc.org/sqlite v1.27.0
+	modernc.org/sqlite v1.28.0
 	sigs.k8s.io/controller-runtime v0.16.3
 )
 
