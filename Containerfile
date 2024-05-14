@@ -9,3 +9,4 @@ WORKDIR /
 CMD ["/usr/bin/kube-sentry"]
 
 
+test
