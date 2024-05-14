@@ -7,3 +7,5 @@ FROM scratch
 COPY --from=builder /kube-sentry/kube-sentry /usr/bin/kube-sentry
 WORKDIR /
 CMD ["/usr/bin/kube-sentry"]
+
+
