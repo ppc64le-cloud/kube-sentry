@@ -6,6 +6,17 @@ updates:
       - dependency
     schedule:
       interval: monthly
+    groups:
+      k8s-dependencies:
+        patterns:
+          - "k8s.io*"
+          - "sigs.k8s.io*"
+      project-dependencies:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "k8s.io*"
+          - "sigs.k8s.io*"
 
   - package-ecosystem: github-actions
     directory: /
