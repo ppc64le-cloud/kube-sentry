@@ -4,13 +4,13 @@ go 1.22.0
 
 require (
 	github.com/spf13/pflag v1.0.5
-	k8s.io/api v0.31.1
-	k8s.io/apimachinery v0.31.1
-	k8s.io/client-go v0.31.1
+	k8s.io/api v0.31.2
+	k8s.io/apimachinery v0.31.2
+	k8s.io/client-go v0.31.2
 	k8s.io/klog/v2 v2.130.1
-	k8s.io/kubernetes v1.31.1
+	k8s.io/kubernetes v1.31.2
 	modernc.org/sqlite v1.33.1
-	sigs.k8s.io/controller-runtime v0.19.0
+	sigs.k8s.io/controller-runtime v0.19.1
 )
 
 require (
