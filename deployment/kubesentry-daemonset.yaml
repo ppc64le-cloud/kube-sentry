@@ -13,6 +13,9 @@ spec:
       labels:
         app: kube-sentry
     spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+        kubernetes.io/arch: ppc64le
       containers:
         - name: kube-sentry
           image: ghcr.io/ppc64le-cloud/kube-sentry:v0.1
