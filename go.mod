@@ -6,13 +6,13 @@ toolchain go1.23.4
 
 require (
 	github.com/spf13/pflag v1.0.6
-	k8s.io/api v0.32.0
-	k8s.io/apimachinery v0.32.0
-	k8s.io/client-go v0.32.0
+	k8s.io/api v0.32.1
+	k8s.io/apimachinery v0.32.1
+	k8s.io/client-go v0.32.1
 	k8s.io/klog/v2 v2.130.1
-	k8s.io/kubernetes v1.32.0
+	k8s.io/kubernetes v1.32.1
 	modernc.org/sqlite v1.34.5
-	sigs.k8s.io/controller-runtime v0.19.3
+	sigs.k8s.io/controller-runtime v0.20.1
 )
 
 require (
