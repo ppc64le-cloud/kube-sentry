@@ -11,7 +11,7 @@ require (
 	k8s.io/client-go v0.34.2
 	k8s.io/klog/v2 v2.130.1
 	k8s.io/kubernetes v1.34.2
-	modernc.org/sqlite v1.40.1
+	modernc.org/sqlite v1.42.2
 	sigs.k8s.io/controller-runtime v0.22.4
 )
 
